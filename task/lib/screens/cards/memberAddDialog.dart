@@ -22,7 +22,7 @@ Future<MemberAddDialogResult?> showMemberAddDialog(BuildContext context, childLe
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text("Add Member"),
+        title: const Text("Add Member"),
         content: StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return Container(
@@ -36,7 +36,7 @@ Future<MemberAddDialogResult?> showMemberAddDialog(BuildContext context, childLe
                         flex: 1,
                         child: TextFormField(
                           controller: firstNameText,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding: EdgeInsets.all(12.0),
                             labelText: "firstName",
                             border: OutlineInputBorder(),
@@ -50,7 +50,7 @@ Future<MemberAddDialogResult?> showMemberAddDialog(BuildContext context, childLe
                         flex: 1,
                         child: TextFormField(
                           controller: lastNameText,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             contentPadding: EdgeInsets.all(12.0),
                             labelText: "lastName",
                             border: OutlineInputBorder(),
@@ -60,12 +60,12 @@ Future<MemberAddDialogResult?> showMemberAddDialog(BuildContext context, childLe
                     ],
                   ),
                   childLength >= 2
-                      ? Text("1 room has max 2 children U have added 2 child now u can not add more child",
+                      ? const Text("1 room has max 2 children U have added 2 child now u can not add more child",
                               style: TextStyle(color: Colors.red))
                           .paddingOnly(top: 12.0, bottom: 12.0)
                       : Row(
                           children: [
-                            Text(
+                            const Text(
                               "Child",
                               style: TextStyle(fontSize: 15.0),
                             ),
@@ -80,7 +80,7 @@ Future<MemberAddDialogResult?> showMemberAddDialog(BuildContext context, childLe
                         ),
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         "Date of Birth ",
                         style: TextStyle(fontSize: 15.0),
                       ),
@@ -103,14 +103,9 @@ Future<MemberAddDialogResult?> showMemberAddDialog(BuildContext context, childLe
                           DateTime dobDate = DateFormat('dd MM yyyy').parse(dobText.text);
                           DateTime currentDate = DateTime.now();
                           childAge = currentDate.year - dobDate.year;
-                          // if (age <= 3) {
-                          //   await Get.rawSnackbar(
-                          //       title: "The child's age should not be more than 3 years...",
-                          //       snackPosition: SnackPosition.BOTTOM);
-                          // }
                         },
                         child: Container(
-                          padding: EdgeInsets.all(10.0),
+                          padding: const EdgeInsets.all(10.0),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6.0),
                             border: Border.all(color: Colors.black),
@@ -118,7 +113,7 @@ Future<MemberAddDialogResult?> showMemberAddDialog(BuildContext context, childLe
                           child: Row(
                             children: [
                               Text(dobText.text != "" ? dobText.text : "DD_MM_YYYY"),
-                              Icon(Icons.calendar_month).paddingOnly(left: 6.0),
+                              const Icon(Icons.calendar_month).paddingOnly(left: 6.0),
                             ],
                           ),
                         ),
@@ -133,7 +128,7 @@ Future<MemberAddDialogResult?> showMemberAddDialog(BuildContext context, childLe
                             : childAge <= 3
                                 ? "The child's age should not be more than 3 years.."
                                 : "",
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   )
                 ],
               ),
@@ -145,13 +140,13 @@ Future<MemberAddDialogResult?> showMemberAddDialog(BuildContext context, childLe
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop(MemberAddDialogResult(
                 member: Members(
-                  memberId: uID.Uuid().v4(),
+                  memberId: const uID.Uuid().v4(),
                   firstName: firstNameText.text,
                   lastName: lastNameText.text,
                   dateOfBirth: dobText.text,
@@ -159,7 +154,7 @@ Future<MemberAddDialogResult?> showMemberAddDialog(BuildContext context, childLe
                 ),
               ));
             },
-            child: Text("Add Member"),
+            child: const Text("Add Member"),
           ),
         ],
       );

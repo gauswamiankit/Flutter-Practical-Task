@@ -1,15 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:task/screens/model/roomModel.dart';
-import 'package:uuid/uuid.dart' as uID;
-
+ 
 class RoomBookingController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   List<RoomModel> roomModel = [];
   bool petLimitreached = false;
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     fetchRooms();
   }
@@ -19,7 +17,7 @@ class RoomBookingController extends GetxController {
       var snapshot = await _firestore.collection('rooms').get();
       roomModel = snapshot.docs.map((e) => RoomModel.fromJson(e.data())).toList();
       petLimitreached = roomModel.any((room) => room.pet == true);
- 
+
       update();
     } catch (e) {
       print("Error fetch data: $e");
@@ -31,15 +29,7 @@ class RoomBookingController extends GetxController {
       var roomDocumentReference = _firestore.collection('rooms').doc();
       RoomModel roomData = RoomModel(
         roomId: roomDocumentReference.id,
-        members: [
-          // Members(
-          //   memberId: uID.Uuid().v4(),
-          //   firstName: "ankt",
-          //   lastName: "giri",
-          //   dateOfBirth: "02 05 2003",
-          //   child: false,
-          // ),
-        ],
+        members: [],
         pet: pet ?? false,
       );
       var roomDataJson = roomData.toJson();
@@ -56,15 +46,7 @@ class RoomBookingController extends GetxController {
       var roomDocumentReference = _firestore.collection('rooms').doc(roomId);
       var roomSnapshot = await roomDocumentReference.get();
       var existingRoomData = RoomModel.fromJson(roomSnapshot.data()!);
-      existingRoomData.members!.add(member
-          // Members(
-          //   memberId: uID.Uuid().v4(),
-          //   firstName: "new2",
-          //   lastName: "member2",
-          //   dateOfBirth: "03 15 2003",
-          //   child: false,
-          // ),
-          );
+      existingRoomData.members!.add(member);
       await roomDocumentReference.update(existingRoomData.toJson());
       fetchRooms();
       update();

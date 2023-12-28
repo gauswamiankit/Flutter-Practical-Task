@@ -15,7 +15,7 @@ Future<RoomAddDialogResult?> showRoomAddDialog(BuildContext context, bool petLim
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text("Add Room"),
+        title: const Text("Add Room"),
         content: StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return Container(
@@ -32,7 +32,7 @@ Future<RoomAddDialogResult?> showRoomAddDialog(BuildContext context, bool petLim
                           });
                         },
                       ),
-                      Text(
+                      const Text(
                         "Do you have pets ?",
                         style: TextStyle(fontSize: 15.0),
                       ),
@@ -40,7 +40,7 @@ Future<RoomAddDialogResult?> showRoomAddDialog(BuildContext context, bool petLim
                   ),
                   Text(
                     petLimitReached == true ? "U have Reached pet limit" : "",
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   ),
                 ],
               ),
@@ -52,13 +52,13 @@ Future<RoomAddDialogResult?> showRoomAddDialog(BuildContext context, bool petLim
             onPressed: () {
               Navigator.of(context).pop(RoomAddDialogResult(petValue: petValue, confirmed: false));
             },
-            child: Text("Cancel"),
+            child: const Text("Cancel"),
           ),
           TextButton(
             onPressed: () {
               Navigator.of(context).pop(RoomAddDialogResult(petValue: petValue, confirmed: true));
             },
-            child: Text("Add Room"),
+            child: const Text("Add Room"),
           ),
         ],
       );
