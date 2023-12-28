@@ -45,7 +45,8 @@ class RoomBookingScreen extends StatelessWidget {
               roomCard(roomBookingController.roomModel, roomBookingController),
               ElevatedButton(
                       onPressed: () {
-                        roomBookingController.fetchRooms();
+                        roomBookingController.createPDF();
+                        // roomBookingController.fetchRooms();
                       },
                       child: const Text("SAVE"))
                   .paddingAll(18.0),
